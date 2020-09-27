@@ -4,21 +4,21 @@ import RPi.GPIO as GPIO
 
 
 									
-GPIO.setmode(GPIO.BOARD)																				# configureren van de GPIO-pinnen 
-GPIO.setup(40, GPIO.OUT)																				# we gaan pin 40 (GPIO-pin 21) gebruiken als een output
-GPIO.output(40, GPIO.LOW)																				# Deze output zetten we voorlopig op LOW (0)
+GPIO.setmode(GPIO.BOARD)		# configureren van de GPIO-pinnen 
+GPIO.setup(40, GPIO.OUT)	        # we gaan pin 40 (GPIO-pin 21) gebruiken als een output
+GPIO.output(40, GPIO.LOW)		# Deze output zetten we voorlopig op LOW (0)
 
-win = Tk()																								# hier creëren we ons main_window van de Gui 
+win = Tk()			  	# hier creëren we ons main_window van de Gui 
 
-myFont = tkFont.Font(family = 'Helvetica', size = 36, weight = 'bold')									# hier creëren we het lettertype dat we in ons main_window gaan gebruiken (vergelijkbaar met CSS (stylesheet))
+myFont = tkFont.Font(family = 'Helvetica', size = 36, weight = 'bold')	# hier creëren we het lettertype dat we in ons main_window gaan gebruiken 
 
-def ledON():																							# de status van GPIO-pin 40 wordt geconrolleerd 
+def ledON():				# de status van GPIO-pin 40 wordt geconrolleerd 
 	print("LED button pressed")
-	if GPIO.input(40) :																					# if HIGH -> LOW 
+	if GPIO.input(40) :		# if HIGH -> LOW 
 		GPIO.output(40,GPIO.LOW)
 		ledButton["text"] = "LED ON"																														
-	else:
-		GPIO.output(40,GPIO.HIGH)																		# else -> HIGH 
+	else:				# else -> HIGH 
+		GPIO.output(40,GPIO.HIGH) 
 		ledButton["text"] = "LED OFF"
 
 def exitProgram():				
@@ -27,13 +27,13 @@ def exitProgram():
 	win.quit()	
 
 
-win.title("First GUI")																					# dit is de titel van ons main window
-win.geometry('800x480')																					# dit is de resolutie van ons main widow (aanpassen aan scherm bv 1080x920)
+win.title("First GUI")			# de titel van ons main window
+win.geometry('800x480')			# dresolutie van ons main widow (aanpassen aan scherm bv 1080x920)
 
 exitButton  = Button(win, text = "Exit", font = myFont, command = exitProgram, height =2 , width = 6) 	# hier creëren we de "EXIT" knop 
-exitButton.pack(side = BOTTOM)																			# en we verklargen dat als hierop geklikt/gedrukt de exitprogram-functie uitgevoerd moet worden
+exitButton.pack(side = BOTTOM)		# en we verklargen dat als hierop geklikt/gedrukt de exitprogram-functie uitgevoerd moet worden
 
-ledButton = Button(win, text = "LED ON", font = myFont, command = ledON, height = 2, width =8 )			# hier creëren we de "LED ON" knop en
-ledButton.pack()																						# en we verklargen dat als hierop geklikt/gedrukt de ledON functie uitgevoerd moet worden 
+ledButton = Button(win, text = "LED ON", font = myFont, command = ledON, height = 2, width =8 )	# hier creëren we de "LED ON" knop en
+ledButton.pack()			# en we verklargen dat als hierop geklikt/gedrukt de ledON functie uitgevoerd moet worden 
 
 mainloop()
