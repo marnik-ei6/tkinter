@@ -1,4 +1,4 @@
-from Tkinter import *
+from Tkinter import *			#importeren van de libraries die we gaan gerbuiken
 import tkFont
 import RPi.GPIO as GPIO
 
